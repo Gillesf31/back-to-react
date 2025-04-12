@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { FaCalendarCheck } from 'react-icons/fa';
 import styled from 'styled-components';
 import './ListGroup.css';
-
 const List = styled.ul`
   list-style: none;
 `;
@@ -53,6 +53,10 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
               $active={activeItemIndex === index}
               key={item}
             >
+              <FaCalendarCheck
+                color={activeItemIndex === index ? 'white' : 'red'}
+                size={25}
+              />
               {item}
             </ListItem>
           ))}
