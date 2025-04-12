@@ -1,30 +1,34 @@
-import { useState } from 'react';
 import './App.css';
-import ListGroup from './components/ListGroup/ListGroup';
+import Button from './components/Button/Button';
 
 function App() {
-  const [isShown, updateIsShown] = useState(false);
   const items = ['New York', 'San Francisco', 'Tokyo', 'London', 'Paris'];
   const handleSelectItem = (item: string) => {
     console.log(item);
   };
   return (
     <>
-      <ListGroup
+      {/* <ListGroup
         items={items}
         heading='Cities'
         onSelectItem={handleSelectItem}
-      />
+      /> */}
       {/* <Alert
         onCloseClicked={() => updateIsShown(false)}
         isShown={isShown}
         alertType='alert-danger'
       >
         Ceci est une alerte!
-      </Alert>
-      <Button onButtonClicked={() => updateIsShown(true)} btnType='btn-danger'>
-        Texte du bouton
-      </Button> */}
+      </Alert> */}
+      <Button onButtonClicked={() => console.log('clicked')}>
+        Default (Primary) Button
+      </Button>
+      <Button
+        btnType='secondary'
+        onButtonClicked={() => console.log('clicked')}
+      >
+        Secondary Button
+      </Button>
     </>
   );
 }
