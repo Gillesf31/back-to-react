@@ -1,33 +1,27 @@
+import { useEffect, useState } from 'react';
 import './App.css';
-import Like from './components/Like/Like';
+import Button from './components/Button/Button';
 
 function App() {
+  console.warn('Component mounted (ngOnInit equivalent)');
+
+  useEffect(() => {
+    console.log('Component mounted (ngOnInit equivalent)');
+  }, []);
+
+  const [isVisible, setVisibility] = useState(false);
+  let counter = 0;
+
+  const handleClick = () => {
+    setVisibility(!isVisible);
+    console.log(isVisible);
+  };
+
   return (
     <>
-      {/* <ListGroup
-        items={items}
-        heading='Cities'
-        onSelectItem={handleSelectItem}
-      />
-      <Alert
-        onCloseClicked={() => updateIsShown(false)}
-        isShown={isShown}
-        alertType='alert-danger'
-      >
-        Ceci est une alerte!
-      </Alert>
-      <Button onButtonClicked={() => console.log('clicked')}>
-        Default (Primary) Button
-      </Button>
-      <Button
-        btnType='secondary'
-        onButtonClicked={() => console.log('clicked')}
-      >
-        Secondary Button
-      </Button> */}
-      <Like onClick={() => console.log('clicked')} />
-      <Like liked={true} onClick={() => console.log('clicked')} />
-      <Like liked={false} onClick={() => console.log('clicked')} />
+      <Button onButtonClicked={handleClick}>Test</Button>
+      {isVisible && <div>isVisible: {isVisible.toString()}</div>}
+      <div>Counter: {counter}</div>
     </>
   );
 }
