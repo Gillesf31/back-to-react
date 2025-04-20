@@ -1,10 +1,24 @@
+import { useEffect, useRef } from 'react';
 import './App.css';
-import Form from './components/Form/Form';
 
 function App() {
+  const ref = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    console.log('1st useEffect');
+    ref.current?.focus();
+  });
+
+  useEffect(() => {
+    console.log('2nd useEffect');
+    setTimeout(() => {
+      document.title = 'Editing';
+    }, 1000);
+  });
+
   return (
     <>
-      <Form />
+      <input type='text' className='form-control' ref={ref} />
     </>
   );
 }
