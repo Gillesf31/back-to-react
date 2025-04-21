@@ -12,16 +12,18 @@ function App() {
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    axios
-      .get<User[]>('https://jsonplaceholder.typicode.com/xusers')
-      .then((res) => {
+    (async () => {
+      try {
+        const res = await axios.get<User[]>(
+          'https://jsonplaceholder.typicode.com/users'
+        );
         console.log(res.data);
         setUsers(res.data);
-      })
-      .catch((err) => {
+      } catch (err: any) {
         console.log(err);
         setError(err.message);
-      });
+      }
+    })();
   }, []);
 
   return (
