@@ -1,6 +1,7 @@
 import axios, { CanceledError } from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
+import {set} from "zod";
 
 type User = {
   id: number;
@@ -22,7 +23,6 @@ function App() {
           setIsLoading(true);
         }
 
-        console.warn('try');
         const res = await axios.get<User[]>(
           'https://jsonplaceholder.typicode.com/users',
           {
@@ -40,7 +40,6 @@ function App() {
           setError(err.message);
         }
       } finally {
-        console.warn('finally');
         if (isMounted) {
           setIsLoading(false);
         }
@@ -53,12 +52,24 @@ function App() {
     };
   }, []);
 
+  const deleteUser = (user: User) => {
+    const originalUsers = [...users];
+    setUsers(users.filter(u => u.id !== user.id));
+
+    axios.delete(`https://jsonplaceholder.typicode.com/xusers/${user.id}`)
+        .catch(error => {
+          setError(error.message);
+          setUsers(originalUsers);
+        })
+  }
+
   return (
     <>
       {isLoading && <div className='spinner-border'></div>}
-      <ul>
+      <ul className='list-group'>
         {users.map((user: User) => (
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id} className='list-group-item d-flex justify-content-between'>{user.name}
+            <button className='btn btn-outline-danger' onClick={() => deleteUser(user)}>Delete</button></li>
         ))}
       </ul>
       {error && <p className='text-danger'>{error}</p>}
