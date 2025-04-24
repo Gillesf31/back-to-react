@@ -4,13 +4,15 @@ import { CanceledError } from './services/api-client';
 import userService, { User } from './services/user-service';
 
 function App() {
+  console.log(userService);
+
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(true);
-    const { request, cancel } = userService.getAllUsers();
+    const { request, cancel } = userService.getAll<User>();
 
     request
       .then((res) => {
@@ -30,7 +32,7 @@ function App() {
     const originalUsers = [...users];
     setUsers(users.filter((u) => u.id !== user.id));
 
-    userService.deleteUser(user).catch((error) => {
+    userService.delete(user.id).catch((error) => {
       setError(error.message);
       setUsers(originalUsers);
     });
@@ -46,7 +48,7 @@ function App() {
     setUsers([user, ...users]);
 
     userService
-      .createUser(user)
+      .create(user)
       .then((res) => {
         setUsers([res.data, ...users]);
       })
@@ -61,7 +63,7 @@ function App() {
     const updatedUser = { ...user, name: 'Updated User' };
     setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
 
-    userService.updateUser(updatedUser).catch((error) => {
+    userService.update(updatedUser).catch((error) => {
       setError(error.message);
       setUsers(originalUsers);
     });
