@@ -9,7 +9,7 @@ interface Todo {
 }
 
 const TodoList = () => {
-  const { data: todos } = useQuery({
+  const { data: todos, error } = useQuery<Todo[], Error>({
     queryKey: ['todos'],
     queryFn: () =>
       axios
@@ -17,7 +17,7 @@ const TodoList = () => {
         .then((res) => res.data),
   });
 
-  //   if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <ul className='list-group'>
