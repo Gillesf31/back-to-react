@@ -1,4 +1,5 @@
-import { useResource } from './useResource';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 type Todo = {
   id: number;
@@ -7,7 +8,16 @@ type Todo = {
   completed: boolean;
 };
 
-const useTodos = () =>
-  useResource<Todo[]>('todos', 'https://jsonplaceholder.typicode.com/todos');
+const useTodos = () => {
+  const fetchTodos = () =>
+    axios
+      .get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
+      .then((response) => response.data);
+
+  return useQuery<Todo[], Error>({
+    queryKey: ['todos'],
+    queryFn: fetchTodos,
+  });
+};
 
 export default useTodos;

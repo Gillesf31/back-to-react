@@ -1,4 +1,5 @@
-import { useResource } from './useResource';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 type Post = {
   userId: number;
@@ -7,6 +8,16 @@ type Post = {
   body: string;
 };
 
-const usePosts = () => useResource<Post[]>('posts', 'https://jsonplaceholder.typicode.com/posts');
+const usePosts = (queryKey: string[], filterValue?: any) => {
+  const fetchTodos = () =>
+    axios
+      .get<Post[]>('https://jsonplaceholder.typicode.com/todos')
+      .then((response) => response.data);
+
+  return useQuery<Post[], Error>({
+    queryKey: ['todos'],
+    queryFn: fetchTodos,
+  });
+};
 
 export default usePosts;
