@@ -3,14 +3,7 @@ import usePosts from './hooks/usePosts';
 
 const PostList = () => {
   const [userId, setUserId] = useState<number | undefined>(undefined);
-  const {
-    data: posts,
-    error,
-    isLoading,
-  } = usePosts(
-    ['users', userId?.toString() || '', 'posts'],
-    userId ? { userId: userId.toString() } : undefined
-  );
+  const { data: posts, error, isLoading } = usePosts(userId);
 
   if (isLoading) return <p>Loading...</p>;
 

@@ -8,15 +8,20 @@ type Post = {
   body: string;
 };
 
-const usePosts = (queryKey: string[], filterValue?: any) => {
-  const fetchTodos = () =>
+const usePosts = (userId: number | undefined) => {
+  console.log(userId);
+  const fetchPosts = () =>
     axios
-      .get<Post[]>('https://jsonplaceholder.typicode.com/todos')
+      .get<Post[]>('https://jsonplaceholder.typicode.com/posts', {
+        params: {
+          userId,
+        },
+      })
       .then((response) => response.data);
 
   return useQuery<Post[], Error>({
-    queryKey: ['todos'],
-    queryFn: fetchTodos,
+    queryKey: userId ? ['users', userId, 'posts'] : ['posts'],
+    queryFn: fetchPosts,
   });
 };
 
