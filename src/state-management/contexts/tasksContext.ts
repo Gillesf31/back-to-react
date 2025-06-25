@@ -1,5 +1,5 @@
 import { createContext, Dispatch } from 'react';
-import { Task, TaskAction } from '../reducers/taskListReducer';
+import { Task, TaskAction } from '../tasks/taskListReducer';
 
 type TasksContextType = {
   tasks: Task[];

@@ -1,5 +1,5 @@
-import useTasks from './hooks/useTasks';
-import { addTaskAction, deleteTaskAction } from './reducers/taskListReducer';
+import { addTaskAction, deleteTaskAction } from './taskListReducer';
+import useTasks from './useTasks';
 
 const TaskList = () => {
   const { tasks, dispatch } = useTasks();

@@ -2,7 +2,7 @@ import './App.css';
 import AuthProvider from './state-management/AuthProvider';
 import HomePage from './state-management/Homepage';
 import NavBar from './state-management/Navbar';
-import TasksProvider from './state-management/TasksProvider';
+import { TasksProvider } from './state-management/tasks';
 
 function App() {
   return (
