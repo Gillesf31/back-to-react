@@ -1,5 +1,5 @@
-import useAuth from './hooks/useAuth';
-import { loginAction, logoutAction } from './reducers/loginStatusReducer';
+import { loginAction, logoutAction } from './loginStatusReducer';
+import useAuth from './useAuth';
 
 const LoginStatus = () => {
   const { user, dispatch } = useAuth();

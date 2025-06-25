@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
-import TasksContext from '../contexts/tasksContext';
 import taskListReducer from './taskListReducer';
+import TasksContext from './tasksContext';
 
 const TasksProvider = ({ children }: { children: React.ReactNode }) => {
   const [tasks, dispatch] = useReducer(taskListReducer, []);

@@ -1,5 +1,5 @@
 import { createContext, Dispatch } from 'react';
-import { LoginStatusAction } from '../reducers/loginStatusReducer';
+import { LoginStatusAction } from './loginStatusReducer';
 
 type UserContextType = {
   user: string;

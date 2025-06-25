@@ -1,6 +1,6 @@
 import { ReactNode, useReducer } from 'react';
-import UserContext from './contexts/userContext';
-import loginStatusReducer from './reducers/loginStatusReducer';
+import loginStatusReducer from './loginStatusReducer';
+import UserContext from './userContext';
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, dispatch] = useReducer(loginStatusReducer, '');
