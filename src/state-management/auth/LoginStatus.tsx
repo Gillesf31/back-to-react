@@ -1,15 +1,14 @@
-import { loginAction, logoutAction } from './loginStatusReducer';
-import useAuth from './useAuth';
+import useAuthStore from './store';
 
 const LoginStatus = () => {
-  const { user, dispatch } = useAuth();
+  const { user, login, logout } = useAuthStore();
 
   if (user) {
     return (
       <>
         <div>
           <span className='mx-2'>{user}</span>
-          <a onClick={() => dispatch(logoutAction())} href='#'>
+          <a onClick={() => logout()} href='#'>
             Logout
           </a>
         </div>
@@ -18,7 +17,7 @@ const LoginStatus = () => {
   }
   return (
     <div>
-      <a onClick={() => dispatch(loginAction('gilles.ferrand'))} href='#'>
+      <a onClick={() => login('gilles.ferrand')} href='#'>
         Login
       </a>
     </div>
