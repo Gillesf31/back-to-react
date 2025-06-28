@@ -4,6 +4,7 @@ import ErrorPage from './ErrorPage';
 import HomePage from './Homepage';
 import Layout from './Layout';
 import LoginPage from './LoginPage';
+import PrivateRoutes from './PrivateRoutes';
 import UserDetail from './UserDetail';
 import UsersPage from './UsersPage';
 
@@ -18,6 +19,19 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: 'contact',
+        element: <ContactPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
+      },
+    ],
+  },
+  {
+    element: <PrivateRoutes />,
+    children: [
+      {
         path: 'users',
         element: <UsersPage />,
         children: [
@@ -26,14 +40,6 @@ const router = createBrowserRouter([
             element: <UserDetail />,
           },
         ],
-      },
-      {
-        path: 'contact',
-        element: <ContactPage />,
-      },
-      {
-        path: 'login',
-        element: <LoginPage />,
       },
     ],
   },
