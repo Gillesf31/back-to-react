@@ -3,6 +3,7 @@ import ContactPage from './ContactPage';
 import ErrorPage from './ErrorPage';
 import HomePage from './Homepage';
 import Layout from './Layout';
+import LoginPage from './LoginPage';
 import UserDetail from './UserDetail';
 import UsersPage from './UsersPage';
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <ContactPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
       },
     ],
   },
